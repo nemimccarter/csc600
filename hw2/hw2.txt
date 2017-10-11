@@ -51,6 +51,13 @@ void bigInt(int);
 
 int main() {
 
+    /* QUESTION 1 */
+    /* iterate through array, and keep track of three *
+     * variables: what the last value was, what the   *
+     * longest sequence was, and how long the current *
+     * sequence is. Longest sequence is assigned to   *
+     * current sequence when appropriate.            */
+
     std::cout << "QUESTION 1:\n";
 
     int array[14] = {1,1,1,2,3,4,5,5,6,6,6,6,7, '\0'};
@@ -61,6 +68,8 @@ int main() {
 
     std::cout << "Longest series: " << maxlen(array, largestInt) << "\n";
 
+    /* QUESTION 3 */
+    /* 
     std::cout << "QUESTION 3:\n";
 
     int sampleList[] = {1,2,2,3,3,3,4,4,4,4,5,5,5,5,5,7,3,2,4,7,1,3,2,9,2,1,3,4,4,'\0'};
@@ -72,6 +81,17 @@ int main() {
 
     std::cout <<"Reduced array: \n";
     printArray(sampleList);
+
+    /* QUESTION 4 */
+    /* Hard-code 2-D array with @ symbols. Each   *
+     * row corresponds to a lateral section of    *
+     * a digit: the first row is the top portion  *
+     * of each digit, the last row is the bottom  *
+     * portion of each digit. Each column         *
+     * corresponds to a digit. We simply parse    *
+     * an input digit by modding and dividing by  *
+     * 10 and looping through the matrix for each *
+     * digit parsed.                             */
 
     std::cout << "QUESTION 4:\n";
 
