@@ -1,9 +1,4 @@
-# Nehemya McCarter-Ribakoff
-# Jozo
-# CSC600 / MWF 12:10PM
-# 16 October 2016
 
-# 1. 
 m([raul, juan, hector, jose, alejandro, pepito, jesus, julio]).
 f([maria, irma, alma, juanita, coralia, gloria, marisa]).
 family( [raul, juanita, [maria, alma, juan, jose, irma, hector]] ).
@@ -35,6 +30,4 @@ uncle(U, C) :- brother1(U, P), parent(P, C).
 grandchild(C, G)     :- parent(G, P), parent(P, C).
 grandson(GS, G)      :- grandchild(GS, G), male(GS).
 granddaughter(GD, G) :- grandchild(GD, G), female(GD).
-
-# 2.
 
