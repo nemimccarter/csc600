@@ -1,3 +1,4 @@
+
 m([raul, juan, hector, jose, alejandro, pepito, jesus, julio]).
 f([maria, irma, alma, juanita, coralia, gloria, marisa]).
 family( [raul, juanita, [maria, alma, juan, jose, irma, hector]] ).
@@ -30,3 +31,6 @@ grandchild(C, G)     :- parent(G, P), parent(P, C).
 grandson(GS, G)      :- grandchild(GS, G), male(GS).
 granddaughter(GD, G) :- grandchild(GD, G), female(GD).
 
+
+is_member(X, L) :- member(X, L).
+is_head(X, L) :- [H|_] = L, H = X.
