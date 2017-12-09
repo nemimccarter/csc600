@@ -74,11 +74,11 @@ class Array
         self.each {
             |index| 
             if (index < amin || index > amax)
-                puts "false"
+                return false
                 return
             end
         }
-        puts "true"
+        return true
     end
 end
 
@@ -88,13 +88,45 @@ puts "\nThe sorted? recognizer\n"
 class Array
     def sorted?
         if self.each_cons(2).all? { |a, b| a >= b }
-            puts '-1'
+            return '-1'
         elsif self.each_cons(2).all? { |a, b| a <= b }
-            puts '+1'
+            return '+1'
         else
-            puts '0'
+            return 0
         end
     end
 end
 
-[7, 8, 9, 10].sorted?
+puts [7, 8, 9, 10].sorted?
+
+# 4. Class Sphere
+# define class Sphere
+class Sphere
+    def initialize(radius)
+        @radius = radius
+    end
+    def area
+        puts 4 * @radius**2 * 3.14159
+    end
+    def volume
+        puts 4 * @radius**3 * (3.14159 / 3)
+    end
+end
+
+class Ball < Sphere
+    def initialize(radius, color)
+        super(radius)
+        @color = color
+    end
+end
+
+class MyBall < Ball
+    def initialize(radius, color, owner)
+        super(radius, color)
+        @owner = owner
+    end
+end
+
+
+boing = MyBall.new(10, 'blue', 'me')
+puts boing.instance_variables
