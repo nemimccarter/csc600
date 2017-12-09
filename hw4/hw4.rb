@@ -63,3 +63,38 @@ puts "\nThe select modifier\n"
 
 puts "\nThe reject modifier\n"
 [1, 2, 3, 4, 5].reject {|num| puts num.even?}
+
+# 2. limited and sorted recognizers
+puts "\nThe limited?(amin, amax) recognizer\n"
+sorted_array = [656, 657, 658, 659]
+unsorted_array = [554, 34, 5, 27]
+
+class Array
+    def limited?(amin, amax)
+        self.each {
+            |index| 
+            if (index < amin || index > amax)
+                puts "false"
+                return
+            end
+        }
+        puts "true"
+    end
+end
+
+[1, 2, 3, 4].limited?(1, 3)
+
+puts "\nThe sorted? recognizer\n"
+class Array
+    def sorted?
+        if self.each_cons(2).all? { |a, b| a >= b }
+            puts '-1'
+        elsif self.each_cons(2).all? { |a, b| a <= b }
+            puts '+1'
+        else
+            puts '0'
+        end
+    end
+end
+
+[7, 8, 9, 10].sorted?
