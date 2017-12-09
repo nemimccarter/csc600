@@ -103,30 +103,35 @@ puts [7, 8, 9, 10].sorted?
 # define class Sphere
 class Sphere
     def initialize(radius)
-        @radius = radius
+        @@radius = radius
     end
     def area
-        puts 4 * @radius**2 * 3.14159
+        puts 4 * @@radius**2 * Math::PI
     end
     def volume
-        puts 4 * @radius**3 * (3.14159 / 3)
+        puts 4 * @@radius**3 * (Math::PI / 3)
     end
 end
 
 class Ball < Sphere
     def initialize(radius, color)
         super(radius)
-        @color = color
+        @@color = color
     end
 end
 
 class MyBall < Ball
     def initialize(radius, color, owner)
         super(radius, color)
-        @owner = owner
+        @@owner = owner
+    end
+    def show
+        puts @@owner
+        puts @@radius
+        puts @@color
     end
 end
 
 
 boing = MyBall.new(10, 'blue', 'me')
-puts boing.instance_variables
+boing.show
