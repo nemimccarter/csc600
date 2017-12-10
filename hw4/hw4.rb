@@ -119,12 +119,17 @@ class Triangle
         @@angleA = findAngle(@@side_a, @@side_b, @@side_c)
         @@angleB = findAngle(@@side_b, @@side_c, @@side_a)
         @@angleC = findAngle(@@side_c, @@side_a, @@side_b)
+        puts 'Angles: '
+        puts @@angleA 
+        puts @@angleB 
+        puts @@angleC
 	end
 
 
     def findAngle(side1, side2, side3)
-        cosSide1 = (side2**2 + side3**2 - side1**2) / (2 * side1 * side2)
-        return Math.acos(cosSide1)
+        cosSide1 = (side2**2 + side3**2 - side1**2) / (2 * side2 * side3)
+        radianAngle = Math.acos(cosSide1)
+        return (radianAngle * 180) / Math::PI
 	end
 
 	def area
@@ -140,27 +145,25 @@ class Triangle
 
 	def test
 		if @@side_a + @@side_b <= @@side_c || @@side_a + @@side_c <= @@side_b || @@side_b + @@side_c <= @@side_a
-			@@is_triangle = false
-            return
+            return 'Not a valid triangle'
 		else
-			@@is_triangle = true
 
-			if @@angles.include?(90)
-				@@angle_type = 'right'
+			if [@@angleA, @@angleB, @@angleC].include?(90)
+				@angle_type = 'right'
 			else
-				@@angle_type = 'oblique'
+				@angle_type = 'oblique'
 			end
 
 			if ([@@side_a, @@side_b, @@side_c].uniq).length == 1
-				@type =  'equalateral'
+				@type =  'equilateral'
 
 			elsif ([@@side_a, @@side_b, @@side_c].uniq).length == 2
 				@type =  'isosceles'
 
-			elsif ([@@side_a, @@side_b, @@side_c].uniq).length == 3
+            else
 				@type =  'scalene'
 			end
-			return (@@angle_type + " " + @type)
+			return ('Valid triangle: ' + @angle_type + " " + @type)
 		end
 	end
 end
