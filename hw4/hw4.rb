@@ -98,9 +98,74 @@ class Array
 end
 
 puts [7, 8, 9, 10].sorted?
+# 3. Class Triangle
+class Triangle	
+    def initialize (a,b,c)
+        # assign longest side to side_c
+		if a > b && a > c
+             @@side_c = a
+             @@side_a = b
+             @@side_b = c
+        elsif b > a && b > c
+            @@side_c = b
+            @@side_a = a
+            @@side_b = c
+        else
+            @@side_c = c
+            @@side_a = a
+            @@side_b = b
+        end
+        # ORDER MATTERS FOR FOLLOWING ARGUMENTS
+        @@angleA = findAngle(@@side_a, @@side_b, @@side_c)
+        @@angleB = findAngle(@@side_b, @@side_c, @@side_a)
+        @@angleC = findAngle(@@side_c, @@side_a, @@side_b)
+	end
 
-# 4. Class Sphere
-# define class Sphere
+
+    def findAngle(side1, side2, side3)
+        cosSide1 = (side2**2 + side3**2 - side1**2) / (2 * side1 * side2)
+        return Math.acos(cosSide1)
+	end
+
+	def area
+		# Heron's Formula
+		@perimeter = (self.perimeter)/2.0
+		@area = Math.sqrt((@perimeter)*(@perimeter-@@side_a)*(@perimeter-@@side_b)*(@perimeter-@@side_c))
+		return @area.round(2)
+	end
+
+	def perimeter
+		return @@side_a + @@side_b + @@side_c
+	end
+
+	def test
+		if @@side_a + @@side_b <= @@side_c || @@side_a + @@side_c <= @@side_b || @@side_b + @@side_c <= @@side_a
+			@@is_triangle = false
+            return
+		else
+			@@is_triangle = true
+
+			if @@angles.include?(90)
+				@@angle_type = 'right'
+			else
+				@@angle_type = 'oblique'
+			end
+
+			if ([@@side_a, @@side_b, @@side_c].uniq).length == 1
+				@type =  'equalateral'
+
+			elsif ([@@side_a, @@side_b, @@side_c].uniq).length == 2
+				@type =  'isosceles'
+
+			elsif ([@@side_a, @@side_b, @@side_c].uniq).length == 3
+				@type =  'scalene'
+			end
+			return (@@angle_type + " " + @type)
+		end
+	end
+end
+
+# 4. Class Sphere, Ball, MyBall
 class Sphere
     def initialize(radius)
         @@radius = radius
