@@ -103,17 +103,17 @@ class Triangle
     def initialize (a,b,c)
         # assign longest side to side_c
 		if a > b && a > c
-             @@side_c = a
-             @@side_a = b
-             @@side_b = c
+             @side_c = a
+             @side_a = b
+             @side_b = c
         elsif b > a && b > c
-            @@side_c = b
-            @@side_a = a
-            @@side_b = c
+            @side_c = b
+            @side_a = a
+            @side_b = c
         else
-            @@side_c = c
-            @@side_a = a
-            @@side_b = b
+            @side_c = c
+            @side_a = a
+            @side_b = b
         end
 	end
 
@@ -127,26 +127,26 @@ class Triangle
 	def area
 		# Heron's Formula
 		@perimeter = (self.perimeter)/2.0
-		@area = Math.sqrt((@perimeter)*(@perimeter-@@side_a)*(@perimeter-@@side_b)*(@perimeter-@@side_c))
+		@area = Math.sqrt((@perimeter)*(@perimeter-@side_a)*(@perimeter-@side_b)*(@perimeter-@side_c))
 		return @area.round(2)
 	end
 
 	def perimeter
-		return @@side_a + @@side_b + @@side_c
+		return @side_a + @side_b + @side_c
 	end
 
     def test
 		type=" "
-		if @@side_a+@@side_b<@@side_c||@@side_a-@@side_b>@@side_c
+		if @side_a+@side_b<@side_c||@side_a-@side_b>@side_c
 			type="not a triangle" 
-		elsif @@side_a==@@side_b && @@side_a==@@side_c
+		elsif @side_a==@side_b && @side_a==@side_c
 			type= "equilateral" 
-		elsif @@side_a==@@side_b||@@side_b==@@side_c||@@side_c==@@side_a
+		elsif @side_a==@side_b||@side_b==@side_c||@side_c==@side_a
 			type="isosceles"
 		else type = "scalene"
 		end
 		
-		if @@side_a**2==@@side_b**2+@@side_c**2||@@side_b**2==@@side_a**2+@@side_c**2||@@side_c**2==@@side_a**2+@@side_b**2
+		if @side_a**2==@side_b**2+@side_c**2||@side_b**2==@side_a**2+@side_c**2||@side_c**2==@side_a**2+@side_b**2
 			then type=" right triangle"
 		end
 					
@@ -157,32 +157,32 @@ end
 # 4. Class Sphere, Ball, MyBall
 class Sphere
     def initialize(radius)
-        @@radius = radius
+        @radius = radius
     end
     def area
-        puts 4 * @@radius**2 * Math::PI
+        puts 4 * @radius**2 * Math::PI
     end
     def volume
-        puts 4 * @@radius**3 * (Math::PI / 3)
+        puts 4 * @radius**3 * (Math::PI / 3)
     end
 end
 
 class Ball < Sphere
     def initialize(radius, color)
         super(radius)
-        @@color = color
+        @color = color
     end
 end
 
 class MyBall < Ball
     def initialize(radius, color, owner)
         super(radius, color)
-        @@owner = owner
+        @owner = owner
     end
     def show
-        puts @@owner
-        puts @@radius
-        puts @@color
+        puts @owner
+        puts @radius
+        puts @color
     end
 end
 
