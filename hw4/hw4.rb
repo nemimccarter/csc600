@@ -115,14 +115,6 @@ class Triangle
             @@side_a = a
             @@side_b = b
         end
-        # ORDER MATTERS FOR FOLLOWING ARGUMENTS
-        @@angleA = findAngle(@@side_a, @@side_b, @@side_c)
-        @@angleB = findAngle(@@side_b, @@side_c, @@side_a)
-        @@angleC = findAngle(@@side_c, @@side_a, @@side_b)
-        puts 'Angles: '
-        puts @@angleA 
-        puts @@angleB 
-        puts @@angleC
 	end
 
 
@@ -143,28 +135,22 @@ class Triangle
 		return @@side_a + @@side_b + @@side_c
 	end
 
-	def test
-		if @@side_a + @@side_b <= @@side_c || @@side_a + @@side_c <= @@side_b || @@side_b + @@side_c <= @@side_a
-            return 'Not a valid triangle'
-		else
-
-			if [@@angleA, @@angleB, @@angleC].include?(90)
-				@angle_type = 'right'
-			else
-				@angle_type = 'oblique'
-			end
-
-			if ([@@side_a, @@side_b, @@side_c].uniq).length == 1
-				@type =  'equilateral'
-
-			elsif ([@@side_a, @@side_b, @@side_c].uniq).length == 2
-				@type =  'isosceles'
-
-            else
-				@type =  'scalene'
-			end
-			return ('Valid triangle: ' + @angle_type + " " + @type)
+    def test
+		type=" "
+		if @@side_a+@@side_b<@@side_c||@@side_a-@@side_b>@@side_c
+			type="not a triangle" 
+		elsif @@side_a==@@side_b && @@side_a==@@side_c
+			type= "equilateral" 
+		elsif @@side_a==@@side_b||@@side_b==@@side_c||@@side_c==@@side_a
+			type="isosceles"
+		else type = "scalene"
 		end
+		
+		if @@side_a**2==@@side_b**2+@@side_c**2||@@side_b**2==@@side_a**2+@@side_c**2||@@side_c**2==@@side_a**2+@@side_b**2
+			then type=" right triangle"
+		end
+					
+		return type		
 	end
 end
 
