@@ -75,7 +75,6 @@ class Array
             |index| 
             if (index < amin || index > amax)
                 return false
-                return
             end
         }
         return true
@@ -136,21 +135,25 @@ class Triangle
 	end
 
     def test
-		type=" "
-		if @side_a+@side_b<@side_c||@side_a-@side_b>@side_c
-			type="not a triangle" 
+		result = ' '
+		if @side_a + @side_b < @side_c || @side_a - @side_b > @side_c
+			result = 'not a triangle' 
 		elsif @side_a==@side_b && @side_a==@side_c
-			type= "equilateral" 
-		elsif @side_a==@side_b||@side_b==@side_c||@side_c==@side_a
-			type="isosceles"
-		else type = "scalene"
-		end
-		
-		if @side_a**2==@side_b**2+@side_c**2||@side_b**2==@side_a**2+@side_c**2||@side_c**2==@side_a**2+@side_b**2
-			then type=" right triangle"
+			result = 'equilateral' 
+            
+		elsif @side_a == @side_b || @side_b == @side_c || @side_c == @side_a
+			result = 'isosceles'
+		else result = 'scalene'
+        end
+        # check if right triangle
+		if @side_a**2 == @side_b**2 + @side_c**2 || @side_b**2 == @side_a**2 + @side_c**2 || @side_c**2 == @side_a**2 + @side_b**2
+			if @side_a == @side_b || @side_b == @side_c || @side_c == @side_a
+			    result = 'right isosceles'
+            else
+                result = 'right scalene'
 		end
 					
-		return type		
+		return result
 	end
 end
 
